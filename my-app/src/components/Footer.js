@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 export default function Footer() {
     return (
-        <div>
-            <p>CopyRights@2021</p>
-        </div>
+        <footer>
+            <Container>
+                <Row>
+                    <Col>CopyRights@2021</Col>
+                </Row>
+            </Container>
+        </footer>
     )
 }
