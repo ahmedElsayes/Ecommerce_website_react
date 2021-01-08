@@ -1,12 +1,15 @@
-import './App.css';
-import Header from "./Header.js";
-import Footer from "./Footer.js";
+import React from 'react'
+import { Container } from 'react-bootstrap';
+import Header from "./components/Header.js";
+import Footer from "./components/Footer.js";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header/>
-      <h1>Hello this is my first code</h1>
+      <main>
+        <Container><h1>Hello this is my first code</h1></Container>
+      </main>
       <Footer/>
     </div>
   );
