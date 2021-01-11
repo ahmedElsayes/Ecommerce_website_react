@@ -1,12 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+//import products from '../products'
+import axios from 'axios'
 
 export default function ProductScreen({ match }) {
 
-    const singleProduct = products.find((p) => {return p._id === match.params.id})
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data } = await axios.get(`/api/products/${match.params.id}`)
+            
+            setProduct(data)
+        }
+        fetchProducts()
+    }, [])
+
     return (
         <div>
             <Link className='btn btn-light my-3' to='/'>
@@ -14,21 +25,21 @@ export default function ProductScreen({ match }) {
             </Link>
             <Row>
                 <Col md={6}>
-                    <Image src={singleProduct.image} alt={singleProduct.name} fluid />
+                    <Image src={product.image} alt={product.name} fluid />
                 </Col>
                 <Col md={3}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h3>{singleProduct.name}</h3>
+                            <h3>{product.name}</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Rating
-                                value={singleProduct.rating}
-                                text={`${singleProduct.numReviews} reviews`}
+                                value={product.rating}
+                                text={`${product.numReviews} reviews`}
                             />
                         </ListGroup.Item>
-                        <ListGroup.Item>Price: ${singleProduct.price}</ListGroup.Item>
-                        <ListGroup.Item>Description: {singleProduct.description}</ListGroup.Item>
+                        <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                        <ListGroup.Item>Description: {product.description}</ListGroup.Item>
                     </ListGroup>
                 </Col>
                 <Col md={3}>
@@ -38,7 +49,7 @@ export default function ProductScreen({ match }) {
                                 <Row>
                                     <Col>Price:</Col>
                                     <Col>
-                                        <strong>${singleProduct.price}</strong>
+                                        <strong>${product.price}</strong>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -47,7 +58,7 @@ export default function ProductScreen({ match }) {
                                 <Row>
                                     <Col>Status:</Col>
                                     <Col>
-                                        {singleProduct.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -55,7 +66,7 @@ export default function ProductScreen({ match }) {
                                 <Button
                                 className='btn-block'
                                 type='button'
-                                disabled={singleProduct.countInStock === 0}
+                                disabled={product.countInStock === 0}
                                 >
                                 Add To Cart
                                 </Button>
