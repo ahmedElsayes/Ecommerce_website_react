@@ -31,6 +31,38 @@ export default function ProductScreen({ match }) {
                         <ListGroup.Item>Description: {singleProduct.description}</ListGroup.Item>
                     </ListGroup>
                 </Col>
+                <Col md={3}>
+                    <Card>
+                        <ListGroup variant='flush'>
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Price:</Col>
+                                    <Col>
+                                        <strong>${singleProduct.price}</strong>
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>
+
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Status:</Col>
+                                    <Col>
+                                        {singleProduct.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Button
+                                className='btn-block'
+                                type='button'
+                                disabled={singleProduct.countInStock === 0}
+                                >
+                                Add To Cart
+                                </Button>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                </Col>
             </Row>
         </div>
     )

@@ -10,7 +10,7 @@ export default function HomeScreen() {
             <Row>
             {Products.map((singleProduct) => {
                 return (
-                    <Col sm={12} md={6} lg={4} xl={3}>
+                    <Col key={singleProduct._id} sm={12} md={6} lg={4} xl={3}>
                         <Product singleItem={singleProduct}/>
                     </Col>
                 )

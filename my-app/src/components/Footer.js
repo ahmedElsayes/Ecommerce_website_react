@@ -7,7 +7,7 @@ export default function Footer() {
         <footer>
             <Container>
                 <Row>
-                    <Col>CopyRights@2021</Col>
+                <Col className='text-center py-3'>Copyright &copy; ProShop</Col>
                 </Row>
             </Container>
         </footer>
