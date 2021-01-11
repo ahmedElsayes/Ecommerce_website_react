@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce_react_fullstack",
+  "version": "1.0.0",
+  "description": "Ecommerce website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedElsayes/Ecommerce_website_react.git"
+  },
+  "author": "ahmed elsayes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahmedElsayes/Ecommerce_website_react/issues"
+  },
+  "homepage": "https://github.com/ahmedElsayes/Ecommerce_website_react#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
