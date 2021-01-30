@@ -22,8 +22,19 @@ const authUser = asyncHandler(async (req, res) => {
 })
 
 const getUserProfile = asyncHandler(async (req, res) => {
-
-    res.send('successful calling')
+    // res.send('successful calling')
+    const user = await User.findById(req.user._id)
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        })
+    } else {
+        res.status(404)
+        throw new Eror('User not found')
+    }
 })
 
 export { authUser, getUserProfile }
