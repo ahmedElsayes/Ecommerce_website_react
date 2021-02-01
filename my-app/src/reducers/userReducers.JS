@@ -60,7 +60,7 @@ import {
       case USER_UPDATE_PROFILE_REQUEST:
         return { loading: true }
       case USER_UPDATE_PROFILE_SUCCESS:
-        return { loading: false, success: action.payload }
+        return { loading: false, success: true, userInfo: action.payload }
       case USER_UPDATE_PROFILE_FAIL:
         return { loading: false, error: action.payload }
       default:
