@@ -30,6 +30,9 @@ const orderSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        itemsPrice: {
+            type: String
+        },
         paymentResult: {
             id: {type: String},
             status: {type: String},
@@ -49,6 +52,9 @@ const orderSchema = mongoose.Schema(
             type: Number,
             required: true,
             default: 0.0,
+        },
+        totalPrice: {
+            type: String
         },
         isPaid: {
             type: Boolean,
