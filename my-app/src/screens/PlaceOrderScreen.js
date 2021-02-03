@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,30 +21,30 @@ const PlaceOrderScreen = ({ history }) => {
         Number(cart.itemsPrice) +
         Number(cart.shippingPrice) +
         Number(cart.taxPrice)
-    ).toFixed(2)
-
+      ).toFixed(2)
+      
     const orderCreate = useSelector((state) => state.orderCreate)
-    const { order, success, error} = orderCreate
-
+    const { order, success, error } = orderCreate
+  
     useEffect(() => {
-        if (success) {
-            history.push(`/order/${order._id}`)
-        }
-    }, [success, history])
-
-
-
+      if (success) {
+        history.push(`/order/${order._id}`)
+      }
+      // eslint-disable-next-line
+    }, [history, success])
+  
     const placeOrderHandler = () => {
-        // console.log('order')
-        dispatch(createOrder({
-            orderItems: cart.cartItems,
-            shippingAddress: cart.shippingAddress,
-            paymentMethod: cart.paymentMethod,
-            itemsPrice: cart.itemsPrice,
-            shippingPrice: cart.shippingPrice,
-            taxPrice: cart.taxPrice,
-            totalPrice: cart.totalPrice
-        }))
+      dispatch(
+        createOrder({
+          orderItems: cart.cartItems,
+          shippingAddress: cart.shippingAddress,
+          paymentMethod: cart.paymentMethod,
+          itemsPrice: cart.itemsPrice,
+          taxPrice: cart.taxPrice,
+          shippingPrice: cart.shippingPrice,
+          totalPrice: cart.totalPrice,
+        })
+      )
     }
 
     return (
