@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from  '../actions/orderActions'
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
@@ -22,6 +22,15 @@ const PlaceOrderScreen = () => {
         Number(cart.shippingPrice) +
         Number(cart.taxPrice)
     ).toFixed(2)
+
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error} = orderCreate
+
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`)
+        }
+    }, [success, history])
 
 
 
@@ -122,6 +131,9 @@ const PlaceOrderScreen = () => {
                         <Col>Total</Col>
                         <Col>${cart.totalPrice}</Col>
                         </Row>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                       {error && <Message variant='danger'> {error} </Message>}
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <Button
