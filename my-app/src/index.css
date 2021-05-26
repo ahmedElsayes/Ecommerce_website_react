@@ -1,7 +1,12 @@
 main {
   min-height: 80vh;
 }
-
+a {
+  text-decoration: auto !important;
+}
+button {
+  margin:  10px 0px !important;
+}
 h3 {
   padding: 1rem 0;
 }
