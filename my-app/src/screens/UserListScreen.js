@@ -4,6 +4,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { Table, Button } from 'react-bootstrap'
 import { listUsers } from '../actions/userActions'
+import { LinkContainer } from 'react-router-bootstrap'
 
 
 export default function UserListScreen() {
@@ -16,6 +17,9 @@ export default function UserListScreen() {
     dispatch(listUsers())
   }, [dispatch])
 
+  const deleteHandler = (id) => {
+    console.log('delete activated', id)
+  }
   return (
     <div>
       <h1> Users </h1>
@@ -43,7 +47,19 @@ export default function UserListScreen() {
                   <i className='fas fa-check' style={{ color: 'green' }}></i>
                 ) : (
                   <i className='fas fa-times' style={{ color: 'red' }}></i>
-                )}</td>
+                )}
+                </td>
+                <td>
+                  <LinkContainer to={`/user/${user._id}/edit`}>
+                    <Button variant='light' className='btn-sm'>
+                      <i className='fas fa-edit'></i>
+                    </Button>
+                  </LinkContainer>
+                  <Button
+                    variant='danger'
+                    className='btn-sm'
+                    onClick={() => deleteHandler(user._id)}></Button>
+                </td>
               </tr>
             ))}
           </tbody>
