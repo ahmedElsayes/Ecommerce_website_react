@@ -2,6 +2,9 @@
   "name": "ecommerce_react_fullstack",
   "version": "1.0.0",
   "description": "Ecommerce website",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "server.js",
   "type": "module",
   "scripts": {
