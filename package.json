@@ -1,6 +1,10 @@
 {
   "name": "ecommerce_mern_course",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.15",
+    "npm": "6.14"
+  },
   "description": "Ecommerce website for mern course",
   "main": "server.js",
   "type": "module",
